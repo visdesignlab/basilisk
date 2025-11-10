@@ -316,6 +316,20 @@
             "parameters": {},
             "response": []
         },
+        "canvas_test_image": {
+            "baseComponent": "canvas",
+            "instruction": "Recreate this image.",
+            "parameters": {},
+            "response": [
+                {
+                    "id": "title",
+                    "type": "textOnly",
+                    "prompt": "![image](./ai-benchmark/assets/draw-stimuli/moon-star.png)",
+                    "restartEnumeration": true,
+                    "location": "sidebar"
+                }
+            ]
+        },
         "creative_writing": {
             "type": "questionnaire",
             "response": [
@@ -339,6 +353,7 @@
             "Form Elements",
             "rectangleBrush_q1",
             "canvas_test",
+            "canvas_test_image",
             "creative_writing",
             "$nasa-tlx.co.nasa-tlx"
         ]
