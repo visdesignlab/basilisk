@@ -315,6 +315,18 @@
             "instruction": "Draw your favorite type of pizza.",
             "parameters": {},
             "response": []
+        },
+        "creative_writing": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "q-name",
+                    "prompt": "Tell me about the last time you went on a walk and saw something interesting. Make it an engaging story,",
+                    "location": "aboveStimulus",
+                    "type": "longText",
+                    "placeholder": "Last tuesday I was walking in the park..."
+                }
+            ]
         }
     },
     "importedLibraries": [
@@ -327,6 +339,7 @@
             "Form Elements",
             "rectangleBrush_q1",
             "canvas_test",
+            "creative_writing",
             "$nasa-tlx.co.nasa-tlx"
         ]
     }
