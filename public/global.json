@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.1/src/parser/GlobalConfigSchema.json",
   "configsList": [
+    "ai-benchmark",
     "tutorial",
     "demo-html",
     "demo-html-input",
@@ -51,6 +52,9 @@
     "test-step-logic"
   ],
   "configs": {
+    "ai-benchmark": {
+      "path": "ai-benchmark/config.json"
+    },
     "tutorial": {
       "path": "tutorial/config.json"
     },
