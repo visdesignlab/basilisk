@@ -341,10 +341,42 @@
                     "placeholder": "Last tuesday I was walking in the park..."
                 }
             ]
+        },
+        "writing-task-tabular-jsonc": {
+            "description": "writing task with tabular data",
+            "instruction": "Please refer to the data structure shown in the figure and convert it into JSONC format. If needed, click the top-right help button to review syntax rules.",
+            "type": "react-component",
+            "nextButtonLocation": "sidebar",
+            "path": "ai-benchmark/assets/Editor.tsx",
+            "parameters": {
+                "language": "jsonc", "imagePath": "ai-benchmark/assets/draw-stimuli/tabular_write.png", "type": "writing", "tabular": false
+            },
+            "response": [
+            
+                {
+                "id": "error",
+                "prompt": "",
+                "hidden": true,
+                "type": "reactive",
+                "required": false
+                },
+                {
+                "id": "writing-task-tabular-jsonc",
+                "prompt": "Are you sure to submit your answer?",
+                "type": "radio",
+                "location": "sidebar",
+                "required": true,
+                "options": [
+                    "Yes"
+                ]
+                }
+            ]
         }
     },
     "importedLibraries": [
-        "nasa-tlx"
+        "nasa-tlx",
+        "demographics",
+        "calvi"
     ],
     "sequence": {
         "order": "fixed",
@@ -355,7 +387,10 @@
             "canvas_test",
             "canvas_test_image",
             "creative_writing",
-            "$nasa-tlx.co.nasa-tlx"
+            "writing-task-tabular-jsonc",
+            "$nasa-tlx.co.nasa-tlx",
+            "$demographics.co.demographics",
+            "$calvi.co.T1"
         ]
     }
 }
