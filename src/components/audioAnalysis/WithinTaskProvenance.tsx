@@ -42,13 +42,15 @@ export function WithinTaskProvenance({
   const aiHeuristics = useMemo(() => {
     const flaggedEvents = runDetectionHeuristics(answer);
 
+    const colorScale = d3.scaleOrdinal(['fastMouseMoveInClick', 'fastMouseMove', 'scrollSpeed', 'typeSpeed', 'copy', 'paste', 'typeRegularity'], colorPlatte);
+
     return flaggedEvents.flaggedEvents.map((event) => {
       if (Array.isArray(event.time)) {
         return (
           <Tooltip withinPortal label={event.type} key={event.time + event.type}>
             <rect
               key={event.time + event.type}
-              fill="firebrick"
+              fill={colorScale(event.type)}
               x={xScale(event.time[0])}
               y={10}
               height={10}
@@ -61,7 +63,7 @@ export function WithinTaskProvenance({
         <Tooltip withinPortal label={event.type} key={event.time + event.type}>
           <polygon
             key={event.time + event.type}
-            fill="firebrick"
+            fill={colorScale(event.type)}
             points={`
               ${xScale(event.time)}, ${-TRIANGLE_OFFSET + height / 2 - TRIANGLE_HEIGHT / 2}
               ${xScale(event.time) - TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
@@ -71,7 +73,7 @@ export function WithinTaskProvenance({
         </Tooltip>
       );
     });
-  }, [answer]);
+  }, [answer, height, xScale]);
 
   // const copyEvents = useMemo(() => answer.windowEvents.filter((windowEvent) => windowEvent[1] === 'copy').map((entry) => {
   //   const [time, type, value] = entry;

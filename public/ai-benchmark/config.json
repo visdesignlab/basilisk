@@ -1,272 +1,261 @@
 {
-    "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.1/src/parser/StudyConfigSchema.json",
-    "studyMetadata": {
-        "title": "Basilisk's Bane",
-        "version": "pilot",
-        "authors": [
-            "The reVISit Team"
-        ],
-        "date": "2023-04-30",
-        "description": "A demo of form elements in reVISit.",
-        "organizations": [
-            "University of Utah",
-            "WPI"
-        ]
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.1/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Basilisk's Bane",
+    "version": "pilot",
+    "authors": ["The reVISit Team"],
+    "date": "2023-04-30",
+    "description": "A demo of form elements in reVISit.",
+    "organizations": ["University of Utah", "WPI"]
+  },
+  "uiConfig": {
+    "contactEmail": "contact@revisit.dev",
+    "helpTextPath": "demo-survey/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "withSidebar": true,
+    "enumerateQuestions": true
+  },
+  "baseComponents": {
+    "scatterPlot": {
+      "description": "A scatterplot and accompanying bar chart.",
+      "type": "react-component",
+      "path": "example-brush-interactions/assets/BrushPlot.tsx",
+      "nextButtonLocation": "sidebar",
+      "instructionLocation": "sidebar",
+      "response": []
     },
-    "uiConfig": {
-        "contactEmail": "contact@revisit.dev",
-        "helpTextPath": "demo-survey/assets/help.md",
-        "logoPath": "revisitAssets/revisitLogoSquare.svg",
-        "withProgressBar": true,
-        "autoDownloadStudy": false,
-        "withSidebar": true,
-        "enumerateQuestions": true
+    "canvas": {
+      "description": "Drawing thingy.",
+      "type": "react-component",
+      "path": "ai-benchmark/assets/Canvas.tsx",
+      "nextButtonLocation": "sidebar",
+      "instructionLocation": "sidebar",
+      "response": []
     },
-    "baseComponents": {
-        "scatterPlot": {
-            "description": "A scatterplot and accompanying bar chart.",
-            "type": "react-component",
-            "path": "example-brush-interactions/assets/BrushPlot.tsx",
-            "nextButtonLocation": "sidebar",
-            "instructionLocation": "sidebar",
-            "response": []
-        },
-        "canvas": {
-            "description": "Drawing thingy.",
-            "type": "react-component",
-            "path": "ai-benchmark/assets/Canvas.tsx",
-            "nextButtonLocation": "sidebar",
-            "instructionLocation": "sidebar",
-            "response": []
-        },
-            "chart-stimulus-insight": {
+    "chart-stimulus-insight": {
       "type": "react-component",
       "path": "ai-benchmark/assets/ChartViewer.tsx",
       "nextButtonText": "Next",
       "parameters": { "question": "insight" },
       "response": [
         {
-          "id": "insight",
-          "prompt": "",
-          "hidden": true,
-          "type": "reactive"
+          "id": "q-name",
+          "required": true,
+          "prompt": "What observations and conclusions can you make based on this slide? Please enter in the box below, one observation per line:",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": ""
         }
       ]
     }
+  },
+  "components": {
+    "Introduction": {
+      "type": "markdown",
+      "path": "demo-survey/assets/introduction.md",
+      "response": []
     },
-    "components": {
-        "Introduction": {
-            "type": "markdown",
-            "path": "demo-survey/assets/introduction.md",
-            "response": []
+    "Form Elements": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "q-numerical",
+          "prompt": "How old are you?",
+          "infoText": "This numerical input accepts values between 0 and 100.",
+          "type": "numerical",
+          "placeholder": "Enter your age here",
+          "withDontKnow": false
         },
-        "Form Elements": {
-            "type": "questionnaire",
-            "response": [
-
-                {
-                    "id": "q-numerical",
-                    "prompt": "How old are you?",
-                    "infoText": "This numerical input accepts values between 0 and 100.",
-                    "type": "numerical",
-                    "placeholder": "Enter your age here",
-                    "withDontKnow": false
-                },
-                {
-                    "id": "q-slider",
-                    "prompt": "How good are you at working with pies?",
-                    "infoText": "Use the slider to indicate your rating on a scale from 'Not at all good' to 'Extremely good'.",
-                    "type": "slider",
-                    "startingValue": 50,
-                    "spacing": 50,
-                    "options": [
-                        {
-                            "label": "Not at all good",
-                            "value": 0
-                        },
-                        {
-                            "label": "Mid",
-                            "value": 50
-                        },
-                        {
-                            "label": "Extremely good",
-                            "value": 100
-                        }
-                    ]
-                },
-                {
-                    "id": "q-short-text",
-                    "prompt": "What is your favorite kind of chart?",
-                    "infoText": "Your response can be a few words or a short sentence.",
-                    "type": "shortText",
-                    "placeholder": "Enter your answer here"
-                },
-                {
-                    "id": "q-dropdown",
-                    "prompt": "Which visualization authoring tool are you most comfortable with?",
-                    "infoText": "Select the tool you prefer from the dropdown menu.",
-                    "type": "dropdown",
-                    "placeholder": "Enter your preference",
-                    "options": [
-                        "Tableau",
-                        "Power BI",
-                        "Excel",
-                        "None"
-                    ]
-                },
-                {
-                    "id": "q-multiselect-dropdown",
-                    "prompt": "Which charts have you used before?",
-                    "infoText": "Select the chart types you have used before. You have to select at least 2 options and up to 3 options.",
-                    "type": "dropdown",
-                    "placeholder": "Enter your responses",
-                    "options": [
-                        "Bar",
-                        "Bubble",
-                        "Pie",
-                        "Stacked Bar",
-                        "Line",
-                        "Scatter",
-                        "Histogram"
-                    ],
-                    "minSelections": 2,
-                    "maxSelections": 3
-                },
-                {
-                    "id": "q-checkbox",
-                    "prompt": "What are position encodings?",
-                    "minSelections": 2,
-                    "maxSelections": 2,
-                    "type": "checkbox",
-                    "options": [
-                        "color",
-                        "x-axis",
-                        "size",
-                        "y-axis"
-                    ],
-                    "withOther": true
-                }
-            ]
-        },
-        "rectangleBrush_q1": {
-            "baseComponent": "scatterPlot",
-            "instruction": "How many cars from Japan have a Miles Per Gallon value greater than 35?",
-            "parameters": {
-                "dataset": "cars",
-                "x": "Miles per Gallon",
-                "y": "Weight (lbs)",
-                "category": "Origin",
-                "ids": "id",
-                "brushType": "Rectangular Selection"
+        {
+          "id": "q-slider",
+          "prompt": "How good are you at working with pies?",
+          "infoText": "Use the slider to indicate your rating on a scale from 'Not at all good' to 'Extremely good'.",
+          "type": "slider",
+          "startingValue": 50,
+          "spacing": 50,
+          "options": [
+            {
+              "label": "Not at all good",
+              "value": 0
             },
-            "response": [
-                {
-                    "id": "response",
-                    "prompt": "Answer:",
-                    "location": "sidebar",
-                    "type": "numerical",
-                    "max": 100,
-                    "min": 0
-                }
-            ],
-            "correctAnswer": [
-                {
-                    "id": "response",
-                    "answer": 17
-                }
-            ]
-        },
-        "canvas_test": {
-            "baseComponent": "canvas",
-            "instruction": "Draw your favorite type of pizza.",
-            "parameters": {},
-            "response": []
-        },
-        "canvas_test_image": {
-            "baseComponent": "canvas",
-            "instruction": "Recreate this image.",
-            "parameters": {},
-            "response": [
-                {
-                    "id": "title",
-                    "type": "textOnly",
-                    "prompt": "![image](./ai-benchmark/assets/draw-stimuli/moon-star.png)",
-                    "restartEnumeration": true,
-                    "location": "sidebar"
-                }
-            ]
-        },
-        "creative_writing": {
-            "type": "questionnaire",
-            "response": [
-                {
-                    "id": "q-name",
-                    "required": false,
-                    "prompt": "Tell me about the last time you went on a walk and saw something interesting. Make it an engaging story.",
-                    "location": "aboveStimulus",
-                    "type": "longText",
-                    "placeholder": "Last tuesday I was walking in the park..."
-                }
-            ]
-        },
-        "writing-task-tabular-jsonc": {
-            "description": "writing task with tabular data",
-            "instruction": "Please refer to the data structure shown in the figure and convert it into JSONC format. If needed, click the top-right help button to review syntax rules.",
-            "type": "react-component",
-            "nextButtonLocation": "sidebar",
-            "path": "ai-benchmark/assets/Editor.tsx",
-            "parameters": {
-                "language": "jsonc",
-                "imagePath": "ai-benchmark/assets/draw-stimuli/tabular_write.png",
-                "type": "writing",
-                "tabular": false
+            {
+              "label": "Mid",
+              "value": 50
             },
-            "response": [
-                {
-                    "id": "error",
-                    "prompt": "",
-                    "hidden": true,
-                    "type": "reactive",
-                    "required": false
-                },
-                {
-                    "id": "writing-task-tabular-jsonc",
-                    "prompt": "Are you sure to submit your answer?",
-                    "type": "radio",
-                    "location": "sidebar",
-                    "required": true,
-                    "options": [
-                        "Yes"
-                    ]
-                }
-            ]
+            {
+              "label": "Extremely good",
+              "value": 100
+            }
+          ]
         },
-            "wapo-none-insight": {
+        {
+          "id": "q-short-text",
+          "prompt": "What is your favorite kind of chart?",
+          "infoText": "Your response can be a few words or a short sentence.",
+          "type": "shortText",
+          "placeholder": "Enter your answer here"
+        },
+        {
+          "id": "q-dropdown",
+          "prompt": "Which visualization authoring tool are you most comfortable with?",
+          "infoText": "Select the tool you prefer from the dropdown menu.",
+          "type": "dropdown",
+          "placeholder": "Enter your preference",
+          "options": ["Tableau", "Power BI", "Excel", "None"]
+        },
+        {
+          "id": "q-multiselect-dropdown",
+          "prompt": "Which charts have you used before?",
+          "infoText": "Select the chart types you have used before. You have to select at least 2 options and up to 3 options.",
+          "type": "dropdown",
+          "placeholder": "Enter your responses",
+          "options": [
+            "Bar",
+            "Bubble",
+            "Pie",
+            "Stacked Bar",
+            "Line",
+            "Scatter",
+            "Histogram"
+          ],
+          "minSelections": 2,
+          "maxSelections": 3
+        },
+        {
+          "id": "q-checkbox",
+          "prompt": "What are position encodings?",
+          "minSelections": 2,
+          "maxSelections": 2,
+          "type": "checkbox",
+          "options": ["color", "x-axis", "size", "y-axis"],
+          "withOther": true
+        }
+      ]
+    },
+    "rectangleBrush_q1": {
+      "baseComponent": "scatterPlot",
+      "instruction": "How many cars from Japan have a Miles Per Gallon value greater than 35?",
+      "parameters": {
+        "dataset": "cars",
+        "x": "Miles per Gallon",
+        "y": "Weight (lbs)",
+        "category": "Origin",
+        "ids": "id",
+        "brushType": "Rectangular Selection"
+      },
+      "response": [
+        {
+          "id": "response",
+          "prompt": "Answer:",
+          "location": "sidebar",
+          "type": "numerical",
+          "max": 100,
+          "min": 0
+        }
+      ],
+      "correctAnswer": [
+        {
+          "id": "response",
+          "answer": 17
+        }
+      ]
+    },
+    "canvas_test": {
+      "baseComponent": "canvas",
+      "instruction": "Draw your favorite type of pizza.",
+      "parameters": {},
+      "response": []
+    },
+    "canvas_test_image": {
+      "baseComponent": "canvas",
+      "instruction": "Recreate this image.",
+      "parameters": {},
+      "response": [
+        {
+          "id": "title",
+          "type": "textOnly",
+          "prompt": "![image](./ai-benchmark/assets/draw-stimuli/moon-star.png)",
+          "restartEnumeration": true,
+          "location": "sidebar"
+        }
+      ]
+    },
+    "creative_writing": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "q-name",
+          "required": true,
+          "prompt": "Tell me about the last time you went on a walk and saw something interesting. Make it an engaging story.",
+          "location": "aboveStimulus",
+          "type": "longText",
+          "placeholder": "Last tuesday I was walking in the park..."
+        }
+      ]
+    },
+    "writing-task-tabular-jsonc": {
+      "description": "writing task with tabular data",
+      "instruction": "Please refer to the data structure shown in the figure and convert it into JSONC format. If needed, click the top-right help button to review syntax rules.",
+      "type": "react-component",
+      "nextButtonLocation": "sidebar",
+      "path": "ai-benchmark/assets/Editor.tsx",
+      "parameters": {
+        "language": "jsonc",
+        "imagePath": "ai-benchmark/assets/draw-stimuli/tabular_write.png",
+        "type": "writing",
+        "tabular": false
+      },
+      "response": [
+        {
+          "id": "error",
+          "prompt": "",
+          "hidden": true,
+          "type": "reactive",
+          "required": false
+        },
+        {
+          "id": "writing-task-tabular-jsonc",
+          "prompt": "Are you sure to submit your answer?",
+          "type": "radio",
+          "location": "sidebar",
+          "required": true,
+          "options": ["Yes"]
+        }
+      ]
+    },
+    "wapo-none-insight": {
       "baseComponent": "chart-stimulus-insight",
       "parameters": {
         "exampleId": "wapo",
         "textType": "none"
-      }
+      },
+      "response": [
+        {
+          "id": "q-name",
+          "required": true,
+          "prompt": "What observations and conclusions can you make based on this slide? Please enter in the box below, one observation per line:",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": ""
+        }
+      ]
     }
-    },
-    "importedLibraries": [
-        "nasa-tlx",
-        "demographics",
-        "calvi",
-        "beauvis"
-    ],
-    "sequence": {
-        "order": "fixed",
-        "components": [
-            "Introduction",
-            "Form Elements",
-            "rectangleBrush_q1",
-            "creative_writing",
-            "wapo-none-insight",
-            "$nasa-tlx.co.nasa-tlx",
-            "$demographics.co.demographics",
-            "$calvi.co.T1",
-            "$beauvis.co.4items"
-        ]
-    }
+  },
+  "importedLibraries": ["nasa-tlx", "demographics", "calvi", "beauvis"],
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      "Introduction",
+      "Form Elements",
+      "rectangleBrush_q1",
+      "creative_writing",
+      "wapo-none-insight",
+      "$nasa-tlx.co.nasa-tlx",
+      "$demographics.co.demographics",
+      "$calvi.co.T1",
+      "$beauvis.co.4items"
+    ]
+  }
 }

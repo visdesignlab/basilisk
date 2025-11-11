@@ -392,9 +392,32 @@ export function AudioProvenanceVis({
     handleWSMount(wavesurfer.current);
   }, [_setPlayTime, handleWSMount, participantId, wavesurfer, taskName]);
 
+  const mouseMoves = useMemo(() => {
+    if (!answers[taskName]) return null;
+    const filteredEvents = answers[taskName]?.windowEvents.filter((ev) => ev[1] === 'mousemove');
+
+    return filteredEvents.map((ev, index) => (
+      <g key={ev[1]}>
+        {index > 0 ? <line opacity={0.3} x1={ev[2][0]} y1={ev[2][1]} x2={filteredEvents[index - 1]?.[2][0]} y2={filteredEvents[index - 1]?.[2][1]} strokeWidth={3} stroke="black" /> : null }
+        <circle cx={ev[2][0]} cy={ev[2][1]} r={10} opacity={0.3} />
+      </g>
+
+    ));
+  }, [answers, taskName]);
+
   return (
     <Group wrap="nowrap" gap={10} mx={10}>
       <Stack ref={ref} style={{ width: '100%' }} gap={0}>
+        <svg style={{
+          position: 'fixed',
+          height: 2000,
+          width: 2000,
+          top: 0,
+          left: 0,
+        }}
+        >
+          {mouseMoves}
+        </svg>
         <LoadingOverlay visible={waveSurferLoading} overlayProps={{ blur: 5, backgroundOpacity: 0.35 }} />
 
         {participantId !== undefined && taskName

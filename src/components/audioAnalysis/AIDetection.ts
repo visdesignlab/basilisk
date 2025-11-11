@@ -12,7 +12,6 @@ export interface FlaggedEvent {
 }
 
 function calcMouseMove(e1: MouseEventType, e2: MouseEventType) {
-  console.log(e1, e2);
   const deltaT = e2[0] - e1[0];
   const deltaX = Math.abs(e2[2][0] - e1[2][0]);
   const deltaY = Math.abs(e2[2][1] - e1[2][1]);
@@ -85,7 +84,6 @@ function copyPaste(answer: StoredAnswer): FlaggedEvent[] {
 
 function scrollWheel(answer: StoredAnswer): FlaggedEvent[] {
   const flaggedEvents: FlaggedEvent[] = [];
-  console.log('in scroll detection');
   const scrollEvents = answer.windowEvents.filter((e) => e[1] === 'scroll');
 
   return flaggedEvents;

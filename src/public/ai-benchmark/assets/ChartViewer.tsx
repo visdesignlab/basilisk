@@ -136,8 +136,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
         <Divider />
 
         <Tabs variant="outline" value={question}>
-          <Tabs.Panel value="insight">
-            <Stack>
+          {/* <Stack>
               <Textarea
                 label="What observations and conclusions can you make based on this slide? Please enter in the box below, one observation per line:"
                 withAsterisk
@@ -148,8 +147,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
                 value={insightText}
                 onChange={(e) => setInsightText(e.currentTarget.value)}
               />
-            </Stack>
-          </Tabs.Panel>
+            </Stack> */}
 
           <Tabs.Panel value="trust">
             <Stack>

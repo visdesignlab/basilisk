@@ -5,7 +5,7 @@
   "doi": "10.1016/S0166-4115(08)62386-9",
   "additionalDescription": "### Source of Workload Evaluation (Pairwise Weighting Procedure)\n\nReference: [NASA TLX manual](https://ntrs.nasa.gov/api/citations/20000021488/downloads/20000021488.pdf) (Section 2.2)\n\nThis step of the NASA-TLX assesses the relative importance of different factors that contribute to a person's experience of workload during a task. Rather than assuming all workload components are equally important, this procedure captures individual differences in how workload is perceived.\n\nParticipants are presented with 15 pairwise comparisons between the six NASA-TLX subscales:\n\n- Mental Demand\n- Physical Demand\n- Temporal Demand\n- Performance\n- Effort\n- Frustration\n\nFor each pair, participants are asked to select the factor that contributed more to their workload experience in the given task.\n\n#### How It Works\nEach chosen subscale earns one point (a \"tally mark\").\n\nAfter 15 comparisons, each subscale has a weight from 0 to 5.\n\nThese weights reflect the participant's personal weighting of each workload dimension.\n\n#### How to Use the Result\nAfter task performance, participants also rate the magnitude (0–100) of each of the six subscales.\n\nFor each subscale:\nAdjusted Score = Raw Rating × Weight\n\nThe overall workload score is calculated by summing all adjusted scores and dividing by 15:\nOverall Workload = Σ(Adjusted Scores) ÷ 15\n\nThis weighted workload score accounts for both perceived intensity and individual prioritization, improving sensitivity and personalization in workload analysis.",
   "components": {
-    "source-of-load":{
+    "source-of-load": {
       "type": "questionnaire",
       "description": "Source of load evaluation, a pairwise weighting procedure to assess the relative importance of different factors that contribute to a person's experience of workload during a task. It should be presented before the NASA-TLX.",
       "responseOrder": "random",
@@ -17,10 +17,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Mental demand",
-            "Physical demand"
-          ]
+          "options": ["Mental demand", "Physical demand"]
         },
         {
           "id": "mental-demand-temporal-demand",
@@ -29,10 +26,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Mental demand",
-            "Temporal demand"
-          ]
+          "options": ["Mental demand", "Temporal demand"]
         },
         {
           "id": "mental-demand-performance",
@@ -41,10 +35,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Mental demand",
-            "Performance"
-          ]
+          "options": ["Mental demand", "Performance"]
         },
         {
           "id": "mental-demand-effort",
@@ -53,10 +44,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Mental demand",
-            "Effort"
-          ]
+          "options": ["Mental demand", "Effort"]
         },
         {
           "id": "mental-demand-frustration",
@@ -65,10 +53,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Mental demand",
-            "Frustration"
-          ]
+          "options": ["Mental demand", "Frustration"]
         },
         {
           "id": "physical-demand-temporal-demand",
@@ -77,10 +62,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Physical demand",
-            "Temporal demand"
-          ]
+          "options": ["Physical demand", "Temporal demand"]
         },
         {
           "id": "physical-demand-performance",
@@ -89,10 +71,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Physical demand",
-            "Performance"
-          ]
+          "options": ["Physical demand", "Performance"]
         },
         {
           "id": "physical-demand-effort",
@@ -101,10 +80,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Physical demand",
-            "Effort"
-          ]
+          "options": ["Physical demand", "Effort"]
         },
         {
           "id": "physical-demand-frustration",
@@ -113,10 +89,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Physical demand",
-            "Frustration"
-          ]
+          "options": ["Physical demand", "Frustration"]
         },
         {
           "id": "temporal-demand-performance",
@@ -125,22 +98,16 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Temporal demand",
-            "Performance"
-          ]
+          "options": ["Temporal demand", "Performance"]
         },
         {
           "id": "temporal-demand-effort",
           "prompt": "Which of the following contributed more to your feeling of workload in the task you just performed?",
           "required": true,
-          "location": "aboveStimulus", 
+          "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Temporal demand",
-            "Effort"
-          ]
+          "options": ["Temporal demand", "Effort"]
         },
         {
           "id": "temporal-demand-frustration",
@@ -149,10 +116,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Temporal demand",
-            "Frustration"
-          ]
+          "options": ["Temporal demand", "Frustration"]
         },
         {
           "id": "performance-effort",
@@ -161,22 +125,16 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Performance",
-            "Effort"
-          ]
+          "options": ["Performance", "Effort"]
         },
         {
           "id": "performance-frustration",
           "prompt": "Which of the following contributed more to your feeling of workload in the task you just performed?",
           "required": true,
           "location": "aboveStimulus",
-          "type": "radio", 
+          "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Performance",
-            "Frustration"
-          ]
+          "options": ["Performance", "Frustration"]
         },
         {
           "id": "effort-frustration",
@@ -185,10 +143,7 @@
           "location": "aboveStimulus",
           "type": "radio",
           "optionOrder": "random",
-          "options": [
-            "Effort",
-            "Frustration"
-          ]
+          "options": ["Effort", "Frustration"]
         }
       ]
     },
@@ -785,10 +740,7 @@
   "sequences": {
     "nasa-tlx-with-source-of-load-evaluation": {
       "order": "fixed",
-      "components": [
-        "source-of-load",
-        "nasa-tlx"
-      ]
+      "components": ["source-of-load", "nasa-tlx"]
     }
   }
 }
