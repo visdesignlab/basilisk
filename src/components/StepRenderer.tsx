@@ -35,7 +35,7 @@ export function StepRenderer() {
 
   const componentConfig = useMemo(() => studyComponentToIndividualComponent(studyConfig.components[currentComponent] || {}, studyConfig), [currentComponent, studyConfig]);
 
-  const windowEventDebounceTime = useMemo(() => componentConfig.windowEventDebounceTime ?? studyConfig.uiConfig.windowEventDebounceTime ?? 100, [componentConfig, studyConfig]);
+  const windowEventDebounceTime = useMemo(() => componentConfig.windowEventDebounceTime ?? studyConfig.uiConfig.windowEventDebounceTime ?? 1, [componentConfig, studyConfig]);
 
   useFetchStylesheet(studyConfig?.uiConfig.stylesheetPath);
 
@@ -52,60 +52,62 @@ export function StepRenderer() {
   // Attach event listeners
   useEffect(() => {
     // Focus
-    const focusListener = debounce((e: FocusEvent) => {
+    const focusListener = (e: FocusEvent) => {
       windowEvents.current.push([Date.now(), 'focus', e.target instanceof HTMLElement ? e.target.tagName : '']);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Inputs
-    const inputListener = debounce((e: InputEvent) => {
+    const inputListener = (e: InputEvent) => {
       windowEvents.current.push([Date.now(), 'input', e.data ?? '']);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Keyboard
-    const keydownListener = debounce((e: KeyboardEvent) => {
+    const keydownListener = (e: KeyboardEvent) => {
       windowEvents.current.push([Date.now(), 'keydown', e.key]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
-    const keyupListener = debounce((e: KeyboardEvent) => {
+    };
+    const keyupListener = (e: KeyboardEvent) => {
       windowEvents.current.push([Date.now(), 'keyup', e.key]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // copy/paste event
-    const copyListener = debounce((e: KeyboardEvent) => {
+    const copyListener = (e: KeyboardEvent) => {
       const copyText = document.getSelection()?.toString();
       windowEvents.current.push([Date.now(), 'copy', copyText ?? '']);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
-    const pasteListener = debounce((e: Event) => {
+    };
+    const pasteListener = (e: Event) => {
       windowEvents.current.push([Date.now(), 'paste', e.revisitPasteValue]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Mouse/Pointer/Touch
-    const mouseDownListener = debounce((e: MouseEvent) => {
+    const mouseDownListener = (e: MouseEvent) => {
       windowEvents.current.push([Date.now(), 'mousedown', [e.clientX, e.clientY]]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
-    const mouseUpListener = debounce((e: MouseEvent) => {
+    const mouseUpListener = (e: MouseEvent) => {
       windowEvents.current.push([Date.now(), 'mouseup', [e.clientX, e.clientY]]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Window resizing
-    const resizeListener = debounce(() => {
+    const resizeListener = () => {
       windowEvents.current.push([Date.now(), 'resize', [window.innerWidth, window.innerHeight]]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Mouse movement
-    const mouseMoveListener = debounce((e: MouseEvent) => {
+    const mouseMoveListener = (e: MouseEvent) => {
       windowEvents.current.push([Date.now(), 'mousemove', [e.clientX, e.clientY]]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     // Scroll
-    const scrollListener = debounce(() => {
+    const scrollListener = () => {
       windowEvents.current.push([Date.now(), 'scroll', [window.scrollX, window.scrollY]]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+      console.log("in scroll")
+      console.log(windowEvents.current)
+    };
 
     // Visibility change
-    const visibilityListener = debounce(() => {
+    const visibilityListener = () => {
       windowEvents.current.push([Date.now(), 'visibility', document.visibilityState]);
-    }, windowEventDebounceTime, { maxWait: windowEventDebounceTime });
+    };
 
     window.addEventListener('focus', focusListener, true);
     window.addEventListener('input', inputListener as () => void);

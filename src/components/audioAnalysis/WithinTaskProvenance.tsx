@@ -2,9 +2,11 @@ import * as d3 from 'd3';
 
 import {
   Affix,
+  Tooltip,
 } from '@mantine/core';
 import { useMemo } from 'react';
 import { StoredAnswer, TrrackedProvenance } from '../../store/types';
+import { runDetectionHeuristics } from './AIDetection';
 
 const RECT_HEIGHT = 15;
 const RECT_WIDTH = 3;
@@ -37,29 +39,64 @@ export function WithinTaskProvenance({
     return _colorMap;
   }, [answer]);
 
-  const copyEvents = useMemo(() => answer.windowEvents.filter((windowEvent) => windowEvent[1] === 'copy').map((entry) => {
-    const [time, type, value] = entry;
-    return (
-      <polygon
-        key={time + type}
-        fill="firebrick"
-        points={`
-          ${xScale(time)}, ${-TRIANGLE_OFFSET + height / 2 - TRIANGLE_HEIGHT / 2}
-          ${xScale(time) - TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
-          ${xScale(time) + TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
-        `}
-      >
-        {/* <foreignObject>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <div>
-              {value}
-            </div>
-          </body>
-        </foreignObject> */}
-      </polygon>
+  const aiHeuristics = useMemo(() => {
+    const flaggedEvents = runDetectionHeuristics(answer);
 
-    );
-  }), [currentNode, height, xScale]);
+    return flaggedEvents.flaggedEvents.map(event =>{
+      
+      if(Array.isArray(event.time)){
+        return <Tooltip withinPortal label={event.type}>
+          <rect
+            key={event.time + event.type}
+            fill="firebrick"
+            x={xScale(event.time[0])}
+            y={height}
+            height={10}
+            width={xScale(event.time[1]) - xScale(event.time[0])}
+          >
+          </rect>
+        </Tooltip>
+      }
+      else {
+        return <Tooltip withinPortal label={event.type}>
+          <polygon
+            key={event.time + event.type}
+            fill="firebrick"
+            points={`
+              ${xScale(event.time)}, ${-TRIANGLE_OFFSET + height / 2 - TRIANGLE_HEIGHT / 2}
+              ${xScale(event.time) - TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
+              ${xScale(event.time) + TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
+            `}
+          >
+          </polygon>
+        </Tooltip>
+      }
+    });
+  }, [answer])
+
+  // const copyEvents = useMemo(() => answer.windowEvents.filter((windowEvent) => windowEvent[1] === 'copy').map((entry) => {
+  //   const [time, type, value] = entry;
+  //   return (
+  //     <polygon
+  //       key={time + type}
+  //       fill="firebrick"
+  //       points={`
+  //         ${xScale(time)}, ${-TRIANGLE_OFFSET + height / 2 - TRIANGLE_HEIGHT / 2}
+  //         ${xScale(time) - TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
+  //         ${xScale(time) + TRIANGLE_WIDTH / 2}, ${-TRIANGLE_OFFSET + height / 2}
+  //       `}
+  //     >
+  //       {/* <foreignObject>
+  //         <body xmlns="http://www.w3.org/1999/xhtml">
+  //           <div>
+  //             {value}
+  //           </div>
+  //         </body>
+  //       </foreignObject> */}
+  //     </polygon>
+
+  //   );
+  // }), [currentNode, height, xScale]);
 
   const pasteEvents = useMemo(() => answer.windowEvents.filter((windowEvent) => windowEvent[1] === 'paste').map((entry) => {
     const [time, type, value] = entry;
@@ -107,10 +144,7 @@ export function WithinTaskProvenance({
         </Affix>
       </g>
       <g>
-        {copyEvents}
-      </g>
-      <g>
-        {pasteEvents}
+        {aiHeuristics}
       </g>
     </g>
   );
