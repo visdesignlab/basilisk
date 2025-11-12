@@ -7,6 +7,7 @@ import { SliderResponse } from '../../parser/types';
 import { generateErrorMessage } from './utils';
 import classes from './css/SliderInput.module.css';
 import { InputLabel } from './InputLabel';
+import { useIsAnalysis } from '../../store/hooks/useIsAnalysis';
 
 export function SliderInput({
   response,
@@ -47,6 +48,8 @@ export function SliderInput({
     const count = Math.floor((max - start) / calculatedSpacing) + 1;
     return Array.from({ length: count }, (_, i) => start + i * calculatedSpacing);
   }, [min, max, spacing]);
+
+  const isReplay = useIsAnalysis();
 
   // For smeq style (vertical slider)
   const [val, setVal] = useState((answer as { value?: number }).value ?? (min + max) / 2);
@@ -227,7 +230,7 @@ export function SliderInput({
         </Box>
       ) : (
         <Slider
-          disabled={disabled}
+          disabled={!isReplay && disabled}
           marks={[...labelValues.map((value) => ({ value })), ...options] as SliderProps['marks']}
           min={min}
           max={max}
