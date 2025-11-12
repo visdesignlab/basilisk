@@ -70,7 +70,7 @@ export function StepRenderer() {
     };
 
     // copy/paste event
-    const copyListener = (e: KeyboardEvent) => {
+    const copyListener = (e: Event) => {
       const copyText = document.getSelection()?.toString();
       windowEvents.current.push([Date.now(), 'copy', copyText ?? '']);
     };
