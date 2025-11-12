@@ -84,21 +84,6 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
     });
   }, [setAnswer, question, trustValue]);
 
-  useEffect(() => {
-    if (intendedValue === '' || unintendedValue === '') {
-      return;
-    }
-    if (question !== 'agree') {
-      return;
-    }
-    setAnswer({
-      status: true,
-      answers: {
-        agree: { intended: intendedValue, unintended: unintendedValue },
-      },
-    });
-  }, [setAnswer, question, intendedValue, unintendedValue]);
-
   const likertCards = likertScale.map((item) => (
     <Radio.Card
       className={classes.root}

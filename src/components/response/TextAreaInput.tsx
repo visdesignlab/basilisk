@@ -22,12 +22,13 @@ export function TextAreaInput({
     placeholder, prompt, required, secondaryText, infoText
   } = response;
 
-  const handlePaste = (event: ClipboardEventHandler<HTMLTextAreaElement>) => {
+  const handlePaste: ClipboardEventHandler<HTMLTextAreaElement> = (event) => {
     if (!event) return;
     // text value does not bubble up, so if we want to caputure this at the event
     // window event listener we need to get the value here and add it to a custom attribute
+    // @ts-expect-error too lazy to actually create a type for this.
     event.nativeEvent.revisitPasteValue = event.clipboardData.getData('text');
-    event.preventDefault();
+    // event.preventDefault(); // uncomment to disable paste in in this component
   };
 
   return (

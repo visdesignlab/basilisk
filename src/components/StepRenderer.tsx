@@ -75,6 +75,7 @@ export function StepRenderer() {
       windowEvents.current.push([Date.now(), 'copy', copyText ?? '']);
     };
     const pasteListener = (e: Event) => {
+      // @ts-expect-error too lazy to actually create a type for this.
       windowEvents.current.push([Date.now(), 'paste', e.revisitPasteValue]);
     };
 
@@ -100,8 +101,8 @@ export function StepRenderer() {
     // Scroll
     const scrollListener = () => {
       windowEvents.current.push([Date.now(), 'scroll', [window.scrollX, window.scrollY]]);
-      console.log("in scroll")
-      console.log(windowEvents.current)
+      // console.log("in scroll")
+      // console.log(windowEvents.current)
     };
 
     // Visibility change
