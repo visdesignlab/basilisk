@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
-    "title": "Basilisk's Bane",
+    "title": "Visualization literacy study",
     "version": "pilot",
     "authors": ["The reVISit Team"],
     "date": "2023-04-30",
@@ -150,14 +150,12 @@
             "Scatter",
             "Histogram"
           ],
-          "minSelections": 2,
-          "maxSelections": 3
+          "minSelections": 1
         },
         {
           "id": "q-checkbox",
           "prompt": "What are position encodings?",
-          "minSelections": 2,
-          "maxSelections": 2,
+          "minSelections": 1,
           "type": "checkbox",
           "options": ["color", "x-axis", "size", "y-axis"],
           "withOther": true
@@ -384,11 +382,12 @@
       "consent",
       "Form Elements",
       "rectangleBrush_q1",
+      "canvas_test_image",
       "creative_writing",
       "wapo-none-insight",
-      "$nasa-tlx.co.nasa-tlx",
       "$calvi.co.T1",
       "$beauvis.co.4items",
+      "$nasa-tlx.co.nasa-tlx",
       {
         "order": "fixed",
         "components": ["ai-did-you-use"],
