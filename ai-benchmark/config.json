@@ -56,6 +56,7 @@
   },
   "components": {
     "introduction": {
+      "withSidebar": false,
       "type": "markdown",
       "path": "ai-benchmark/assets/introduction.md",
       "response": [
@@ -70,6 +71,7 @@
       ]
     },
     "consent": {
+      "withSidebar": false,
       "type": "markdown",
       "recordAudio": false,
       "path": "ai-benchmark/assets/consent.md",
@@ -87,6 +89,7 @@
     },
     "Form Elements": {
       "type": "questionnaire",
+      "withSidebar": false,
       "response": [
         {
           "id": "q-numerical",
@@ -191,12 +194,14 @@
       ]
     },
     "canvas_test": {
+      "withSidebar": false,
       "baseComponent": "canvas",
       "instruction": "Draw your favorite type of pizza.",
       "parameters": {},
       "response": []
     },
     "canvas_test_image": {
+      "withSidebar": false,
       "baseComponent": "canvas",
       "instruction": "Recreate this image.",
       "parameters": {},
@@ -211,6 +216,7 @@
       ]
     },
     "creative_writing": {
+      "withSidebar": false,
       "type": "questionnaire",
       "response": [
         {
@@ -224,6 +230,7 @@
       ]
     },
     "writing-task-tabular-jsonc": {
+      "withSidebar": false,
       "description": "writing task with tabular data",
       "instruction": "Please refer to the data structure shown in the figure and convert it into JSONC format. If needed, click the top-right help button to review syntax rules.",
       "type": "react-component",
@@ -254,6 +261,7 @@
       ]
     },
     "wapo-none-insight": {
+      "withSidebar": false,
       "baseComponent": "chart-stimulus-insight",
       "parameters": {
         "exampleId": "wapo",
@@ -271,6 +279,7 @@
       ]
     },
     "ai-did-you-use": {
+      "withSidebar": false,
       "type": "questionnaire",
       "response": [
         {
@@ -285,6 +294,7 @@
       ]
     },
     "ai-no-use": {
+      "withSidebar": false,
       "type": "questionnaire",
       "response": [
         {
@@ -294,6 +304,7 @@
           "infoText": "Select all options that apply.",
           "type": "checkbox",
           "withOther": true,
+          "optionOrder": "random",
           "options": [
             "Inauthentic/invalid",
             "Unethical/immoral",
@@ -315,6 +326,7 @@
       ]
     },
     "ai-use": {
+      "withSidebar": false,
       "type": "questionnaire",
       "response": [
         {
@@ -324,6 +336,7 @@
           "infoText": "Select the AI tool(s) you used during this study.",
           "type": "checkbox",
           "withOther": true,
+          "optionOrder": "random",
           "options": [
             "ChatGPT",
             "Gemini",
@@ -341,6 +354,7 @@
           "infoText": "Select all options that apply.",
           "type": "checkbox",
           "withOther": true,
+          "optionOrder": "random",
           "options": [
             "Need help expresssing thoughts",
             "AI will be faster",

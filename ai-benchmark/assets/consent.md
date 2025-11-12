@@ -12,7 +12,7 @@ You are being asked to participate in a research study. Before you agree, howeve
 Visual representations of data (visualizations) are increasingly common in everyday life. The purpose of this study is to learn more about how people interpret and understand visualizations, especially correlation values.
 
 ## Tasks
-The study contains 3 sets of tasks, shown to you in a random order. One set will ask you to critique data visualizations which are presented. Another set will ask you to sketch data visualizations on your device, given a small amount of data. The last task will ask you quiz-like multiple choice questions which can be answered from a presented data visualization. It will take approximately 40-50 minutes to finish this study. For many of these tasks we will request that you think-aloud while completing the task, and we will record and save your audio.
+This study contains a variety of tasks which will have you interact with data and data visualizations. It will take approximately 10 minutes. Please complete each task to the best of your ability. 
 
 ## Risks to study participants
 Each participant in this study is assigned a random ID for analyses. As such, your participation will remain anonymous and your responses will not be used to identify you.
@@ -34,7 +34,7 @@ Your participation in this research is voluntary Your refusal to participate wil
 As part of this study, we would like to keep information collected in during this project so that researchers may use it in the future in other research projects. When we use the term "data repository", it refers to the storage of the information that is collected.
 
 ## What will be kept?
-We would like to keep recorded audio while you take this study, as well as interaction log data.
+We would like to record interaction log data as you take this study.
 
 ## What will my information be used for?
 Information collected about you may be used for future research about data visualization to help us learn more, and may be presented in research papers or presentations.
@@ -47,7 +47,7 @@ If you do not want your information to be saved for future research, you should 
 The information kept from you will not have your name or other personal information linked to it. Your de-identified information may be shared with researchers at the University of Utah and at other institutions without additional informed consent from you or your legally authorized representative. The only information we will keep is information like your age.
 
 ## What if I want to withdraw my information from the data repository?
-If you contact us via the platform which you were recruited from, you may request to have your data removed at any time, at which point we will delete your audio recordings.
+If you contact us via the platform which you were recruited from, you may request to have your data removed at any time, at which point we will delete your interaction logs.
 
 ## Will my information be used for commercial profit?
 Information obtained from you in this research may help in the development of a commercial product by University of Utah or its research partners. There are no plans to provide financial compensation to you should this occur.
