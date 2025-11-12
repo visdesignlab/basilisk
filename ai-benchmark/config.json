@@ -15,7 +15,10 @@
     "withProgressBar": true,
     "autoDownloadStudy": false,
     "withSidebar": true,
-    "enumerateQuestions": true
+    "enumerateQuestions": true,
+    "urlParticipantIdParam": "PROLIFIC_PID",
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=CU7QI80R](https://app.prolific.com/submissions/complete?cc=CU7QI80R)",
+    "participantNameField": "introduction.prolificId"
   },
   "baseComponents": {
     "scatterPlot": {
@@ -52,10 +55,19 @@
     }
   },
   "components": {
-    "Introduction": {
+    "introduction": {
       "type": "markdown",
       "path": "ai-benchmark/assets/introduction.md",
-      "response": []
+      "response": [
+        {
+          "id": "prolificId",
+          "prompt": "Please enter your Prolific ID",
+          "location": "belowStimulus",
+          "type": "shortText",
+          "placeholder": "Prolific ID",
+          "paramCapture": "PROLIFIC_PID"
+        }
+      ]
     },
     "consent": {
       "type": "markdown",
@@ -262,45 +274,45 @@
       "type": "questionnaire",
       "response": [
         {
-            "id": "ai-used",
-            "prompt": "How much AI did you use in this study?",
-            "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
-            "infoText": "Select one of the options.",
-            "location": "aboveStimulus",
-            "type": "radio",
-            "options": ["Never", "Sometimes", "Most of the time", "Always"]
+          "id": "ai-used",
+          "prompt": "How much AI did you use in this study?",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Select one of the options.",
+          "location": "aboveStimulus",
+          "type": "radio",
+          "options": ["Never", "Sometimes", "Most of the time", "Always"]
         }
       ]
     },
     "ai-no-use": {
-        "type": "questionnaire",
-        "response": [
-            {
-                "id": "ai-no-use-reason",
-                "prompt": "Why did you not use AI?",
-                "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
-                "infoText": "Select all options that apply.",
-                "type": "checkbox",
-                "withOther": true,
-                "options": [
-                    "Inauthentic/invalid",
-                    "Unethical/immoral",
-                    "Unnecessary",
-                    "Against rules",
-                    "Preference",
-                    "Unfamiliar",
-                    "Ineffective"
-                ]
-            },
-            {
-                "id": "q-short-text",
-                "prompt": "Please describe in detail why you chose to not use AI.",
-                "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
-                "infoText": "Your response can be a paragraph.",
-                "type": "longText",
-                "placeholder": "Enter your answer here"
-            }
-        ]
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "ai-no-use-reason",
+          "prompt": "Why did you not use AI?",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Select all options that apply.",
+          "type": "checkbox",
+          "withOther": true,
+          "options": [
+            "Inauthentic/invalid",
+            "Unethical/immoral",
+            "Unnecessary",
+            "Against rules",
+            "Preference",
+            "Unfamiliar",
+            "Ineffective"
+          ]
+        },
+        {
+          "id": "q-short-text",
+          "prompt": "Please describe in detail why you chose to not use AI.",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Your response can be a paragraph.",
+          "type": "longText",
+          "placeholder": "Enter your answer here"
+        }
+      ]
     },
     "ai-use": {
       "type": "questionnaire",
@@ -355,7 +367,7 @@
   "sequence": {
     "order": "fixed",
     "components": [
-      "Introduction",
+      "introduction",
       "consent",
       "Form Elements",
       "rectangleBrush_q1",
@@ -366,28 +378,32 @@
       "$calvi.co.T1",
       "$beauvis.co.4items",
       {
-          "order": "fixed",
-          "components": ["ai-did-you-use"],
-          "skip": [{
+        "order": "fixed",
+        "components": ["ai-did-you-use"],
+        "skip": [
+          {
             "name": "ai-did-you-use",
             "check": "response",
             "responseId": "ai-used",
             "value": "Never",
             "comparison": "equal",
             "to": "ai-no-use"
-          }]
+          }
+        ]
       },
       {
         "order": "fixed",
         "components": ["ai-use"],
-        "skip": [{
-          "name": "ai-use",
-          "responseId": "ai-use-reason",
-          "comparison": "notEqual",
-          "value": "banana",
-          "check": "response",
-          "to": "end"
-        }]
+        "skip": [
+          {
+            "name": "ai-use",
+            "responseId": "ai-use-reason",
+            "comparison": "notEqual",
+            "value": "banana",
+            "check": "response",
+            "to": "end"
+          }
+        ]
       },
       "ai-no-use"
     ]
