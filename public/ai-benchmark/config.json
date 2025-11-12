@@ -241,6 +241,98 @@
           "placeholder": ""
         }
       ]
+    },
+    "ai-did-you-use": {
+      "type": "questionnaire",
+      "response": [
+        {
+            "id": "ai-used",
+            "prompt": "How much AI did you use in this study?",
+            "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+            "infoText": "Select one of the options.",
+            "location": "aboveStimulus",
+            "type": "radio",
+            "options": ["Never", "Sometimes", "Most of the time", "Always"]
+        }
+      ]
+    },
+    "ai-no-use": {
+        "type": "questionnaire",
+        "response": [
+            {
+                "id": "ai-no-use-reason",
+                "prompt": "Why did you not use AI?",
+                "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+                "infoText": "Select all options that apply.",
+                "type": "checkbox",
+                "withOther": true,
+                "options": [
+                    "Inauthentic/invalid",
+                    "Unethical/immoral",
+                    "Unnecessary",
+                    "Against rules",
+                    "Preference",
+                    "Unfamiliar",
+                    "Ineffective"
+                ]
+            },
+            {
+                "id": "q-short-text",
+                "prompt": "Please describe in detail why you chose to not use AI.",
+                "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+                "infoText": "Your response can be a paragraph.",
+                "type": "longText",
+                "placeholder": "Enter your answer here"
+            }
+        ]
+    },
+    "ai-use": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "ai-tool-use",
+          "prompt": "Which of the following did you use? Select multiple if you used more than one.",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Select the AI tool(s) you used during this study.",
+          "type": "checkbox",
+          "withOther": true,
+          "options": [
+            "ChatGPT",
+            "Gemini",
+            "Copilot",
+            "Claude",
+            "Perplexity",
+            "Quillbot",
+            "Mistral"
+          ]
+        },
+        {
+          "id": "ai-use-reason",
+          "prompt": "Why did you use AI?",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Select all options that apply.",
+          "type": "checkbox",
+          "withOther": true,
+          "options": [
+            "Need help expresssing thoughts",
+            "AI will be faster",
+            "Unclear instructions",
+            "AI will give higher quality answer",
+            "Need to write a long answer",
+            "Have nothing to say",
+            "Too many writing questions",
+            "Need help with translation"
+          ]
+        },
+        {
+          "id": "q-short-text",
+          "prompt": "Please describe in detail how and why you used AI.",
+          "secondaryText": "This is an important research question in our study. Your response will not impact your compensation. Please answer truthfully.",
+          "infoText": "Your response can be a paragraph.",
+          "type": "longText",
+          "placeholder": "Enter your answer here"
+        }
+      ]
     }
   },
   "importedLibraries": ["nasa-tlx", "demographics", "calvi", "beauvis"],
@@ -255,7 +347,32 @@
       "$nasa-tlx.co.nasa-tlx",
       "$demographics.co.demographics",
       "$calvi.co.T1",
-      "$beauvis.co.4items"
+      "$beauvis.co.4items",
+      {
+          "order": "fixed",
+          "components": ["ai-did-you-use"],
+          "skip": [{
+            "name": "ai-did-you-use",
+            "check": "response",
+            "responseId": "ai-used",
+            "value": "Never",
+            "comparison": "equal",
+            "to": "ai-no-use"
+          }]
+      },
+      {
+        "order": "fixed",
+        "components": ["ai-use"],
+        "skip": [{
+          "name": "ai-use",
+          "responseId": "ai-use-reason",
+          "comparison": "notEqual",
+          "value": "banana",
+          "check": "response",
+          "to": "end"
+        }]
+      },
+      "ai-no-use"
     ]
   }
 }
