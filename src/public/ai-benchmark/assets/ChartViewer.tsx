@@ -84,6 +84,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
     });
   }, [setAnswer, question, trustValue]);
 
+
   const likertCards = likertScale.map((item) => (
     <Radio.Card
       className={classes.root}
@@ -148,7 +149,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
                 setTrustValue={setTrustValue}
               />
             </Stack>
-          </Tabs.Panel>
+          </Tabs.Panel>  
 
           <Tabs.Panel value="agree">
             <Stack>
