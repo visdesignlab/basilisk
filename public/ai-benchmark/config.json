@@ -10,7 +10,6 @@
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
-    "helpTextPath": "demo-survey/assets/help.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
@@ -377,7 +376,7 @@
       ]
     }
   },
-  "importedLibraries": ["nasa-tlx", "demographics", "calvi", "beauvis"],
+  "importedLibraries": ["nasa-tlx", "calvi", "beauvis"],
   "sequence": {
     "order": "fixed",
     "components": [
@@ -388,7 +387,6 @@
       "creative_writing",
       "wapo-none-insight",
       "$nasa-tlx.co.nasa-tlx",
-      "$demographics.co.demographics",
       "$calvi.co.T1",
       "$beauvis.co.4items",
       {
