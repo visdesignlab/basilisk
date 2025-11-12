@@ -54,8 +54,24 @@
   "components": {
     "Introduction": {
       "type": "markdown",
-      "path": "demo-survey/assets/introduction.md",
+      "path": "ai-benchmark/assets/introduction.md",
       "response": []
+    },
+    "consent": {
+      "type": "markdown",
+      "recordAudio": false,
+      "path": "ai-benchmark/assets/consent.md",
+      "nextButtonText": "Agree",
+      "response": [
+        {
+          "id": "accept",
+          "prompt": "Do you consent to the study and wish to continue?",
+          "requiredValue": "Accept",
+          "location": "belowStimulus",
+          "type": "radio",
+          "options": ["Decline", "Accept"]
+        }
+      ]
     },
     "Form Elements": {
       "type": "questionnaire",
@@ -188,10 +204,10 @@
         {
           "id": "q-name",
           "required": true,
-          "prompt": "Tell me about the last time you went on a walk and saw something interesting. Make it an engaging story.",
+          "prompt": "Recall the last time you saw an engaging chart and describe why it was engaging to you. Also describe where you encountered the chart.",
           "location": "aboveStimulus",
           "type": "longText",
-          "placeholder": "Last tuesday I was walking in the park..."
+          "placeholder": "I saw this chart..."
         }
       ]
     },
@@ -340,6 +356,7 @@
     "order": "fixed",
     "components": [
       "Introduction",
+      "consent",
       "Form Elements",
       "rectangleBrush_q1",
       "creative_writing",
